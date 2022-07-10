@@ -1,6 +1,6 @@
 package com.example.beautyshop.MakeupCard
 
-import android.content.ClipDescription
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -22,6 +22,7 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
                 putExtra(EXTRA_ID, id)
             }
             context.startActivity(intent)
+            (context as Activity).overridePendingTransition(R.anim.diagonaltranslate,R.anim.alpha)
         }
     }
 

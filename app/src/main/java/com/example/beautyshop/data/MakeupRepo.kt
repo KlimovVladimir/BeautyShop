@@ -2,7 +2,7 @@ package com.example.beautyshop.data
 
 class MakeupRepo {
 
-    private val makeups = mutableListOf(
+    private var makeups = mutableListOf(
         Makeup(
                 id = 1048,
                 brand = "colourpop",
@@ -90,6 +90,10 @@ class MakeupRepo {
     )
 
     fun getAll(): List<Makeup> = makeups
+
+    fun setAll(List: MutableList<Makeup>) {
+        makeups = List
+    }
 
     fun get(id: Long): Makeup? = makeups.firstOrNull { it.id == id }
 

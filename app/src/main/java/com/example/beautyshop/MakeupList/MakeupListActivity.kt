@@ -1,8 +1,9 @@
 package com.example.beautyshop.MakeupList
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beautyshop.BeautyShopApplication
 import com.example.beautyshop.MakeupCard.MakeupCardActivity
@@ -32,6 +33,8 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
         mService = Common.retrofitService
 
         val makeupsList = findViewById<RecyclerView>(R.id.makeupList)
+        val layoutManager = GridLayoutManager(this, 2)
+        makeupsList.setLayoutManager(layoutManager)
         makeupsList.adapter = adapter
         getAllProductList()
     }

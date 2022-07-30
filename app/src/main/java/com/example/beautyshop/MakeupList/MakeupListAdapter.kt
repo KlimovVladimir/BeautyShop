@@ -3,10 +3,12 @@ package com.example.beautyshop.MakeupList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beautyshop.R
 import com.example.beautyshop.data.Makeup
+import com.squareup.picasso.Picasso
 
 class MakeupListAdapter(private val onItemClick: (Makeup) -> Unit) : RecyclerView.Adapter<MakeupHolder>() {
 
@@ -33,10 +35,15 @@ class MakeupHolder(private val onItemClick: (Makeup) -> Unit, itemView: View) : 
 
     private val nameText: TextView = itemView.findViewById(R.id.nameText)
     private val brandText: TextView = itemView.findViewById(R.id.brandText)
+    private val priceText: TextView = itemView.findViewById(R.id.priceText)
+    private val image: ImageView = itemView.findViewById(R.id.image)
 
     fun bind(makeup: Makeup) {
+        Picasso.get().load(makeup.image_link).into(image)
         nameText.text = makeup.name
         brandText.text = makeup.brand
+        priceText.text = makeup.price + makeup.price_sign
+
         itemView.setOnClickListener { onItemClick(makeup) }
     }
 }

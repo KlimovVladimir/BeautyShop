@@ -63,7 +63,10 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
         //    presenter.onSaveButtonClicked(updatedCharacter)
         //}
     }
-
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.diagonaltranslate,R.anim.alpha)
+    }
     override fun closeScreen() {
         finish()
     }

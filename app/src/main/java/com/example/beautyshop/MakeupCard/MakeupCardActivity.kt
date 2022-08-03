@@ -15,7 +15,7 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
 
     companion object {
 
-        private val EXTRA_ID = "EXTRA_ID"
+        private val EXTRA_ID = "MAKEUP_CARD_EXTRA_ID"
 
         fun start(context: Context, id: Long) {
             val intent = Intent(context, MakeupCardActivity::class.java).apply {

@@ -16,4 +16,8 @@ class MakeupListPresenter(private val repository: MakeupRepo) : BasePresenter<Ma
         view?.openDetailsScreen(makeup.id)
     }
 
+    fun onFilterClicked() {
+        view?.openFilterScreen()
+    }
+
 }

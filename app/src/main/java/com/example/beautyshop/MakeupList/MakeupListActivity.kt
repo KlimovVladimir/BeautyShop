@@ -1,11 +1,14 @@
 package com.example.beautyshop.MakeupList
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beautyshop.BeautyShopApplication
+import com.example.beautyshop.FilterList.FilterListActivity
+import com.example.beautyshop.data.Filter
 import com.example.beautyshop.MakeupCard.MakeupCardActivity
 import com.example.beautyshop.R
 import com.example.beautyshop.data.Makeup
@@ -26,33 +29,39 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
         presenter.onCharacterClicked(it)
     }
 
+    private lateinit var filterButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_makeup_list)
         presenter.attachView(this)
         mService = Common.retrofitService
 
+        filterButton = findViewById(R.id.filterButton)
         val makeupsList = findViewById<RecyclerView>(R.id.makeupList)
         val layoutManager = GridLayoutManager(this, 2)
         makeupsList.setLayoutManager(layoutManager)
         makeupsList.adapter = adapter
+        filterButton.setOnClickListener { presenter.onFilterClicked() }
         getAllProductList()
     }
 
     private fun getAllProductList() {
-        mService.getMakeupList().enqueue(object : Callback<MutableList<Makeup>> {
+        mService.getMakeupList("products.json?product_type=lip_liner").enqueue(object : Callback<MutableList<Makeup>> {
             override fun onFailure(call: Call<MutableList<Makeup>>, t: Throwable) {
             }
 
             override fun onResponse(call: Call<MutableList<Makeup>>, response: Response<MutableList<Makeup>>) {
                 (application as BeautyShopApplication).makeupRepository.setAll(response.body() as MutableList<Makeup>)
                 adapter.notifyDataSetChanged()
+                presenter.onScreenResumed()
             }
         })
     }
 
     override fun onResume() {
         super.onResume()
+        adapter.notifyDataSetChanged()
         presenter.onScreenResumed()
     }
 
@@ -62,5 +71,9 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
 
     override fun openDetailsScreen(makeupId: Long) {
         MakeupCardActivity.start(this, makeupId)
+    }
+
+    override fun openFilterScreen() {
+        FilterListActivity.start(this)
     }
 }

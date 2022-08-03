@@ -8,4 +8,6 @@ interface MakeupListView: BaseView {
     fun bindCharacter(list: List<Makeup>)
 
     fun openDetailsScreen(makeupId: Long)
+
+    fun openFilterScreen()
 }

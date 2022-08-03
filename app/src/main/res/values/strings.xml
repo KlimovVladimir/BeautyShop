@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">BeautyShop</string>
+
+    <string name="product_type">Тип продукта</string>
+    <string name="product_category">Категория</string>
+    <string name="product_tags">Теги</string>
+    <string name="brand">Бренд</string>
+    <string name="price">Цена</string>
+    <string name="rating">Рейтинг</string>
+    <string name="apply">Принять</string>
+
+    <string name="filter">Фильтр</string>
+
 </resources>

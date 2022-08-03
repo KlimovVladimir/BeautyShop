@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MakeupCard.MakeupCardActivity" />
+        <activity android:name=".FilterList.FilterListActivity" />
+        <activity android:name=".FilterList.SelectorActivity.SelectorActivity" />
     </application>
 
 </manifest>

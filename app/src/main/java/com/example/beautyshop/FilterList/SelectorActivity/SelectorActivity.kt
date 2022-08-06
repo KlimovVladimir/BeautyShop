@@ -15,7 +15,7 @@ import com.example.beautyshop.data.Filter
 
 class SelectorActivity: AppCompatActivity(), SelectorView {
 
-    var id : Long = 1
+    var id : Long = -1
 
     companion object {
         private val EXTRA_ID = "SELECTOR_EXTRA_ID"
@@ -33,17 +33,14 @@ class SelectorActivity: AppCompatActivity(), SelectorView {
         SelectorPresenter()
     }
 
-    private val adapter = SelectorAdapter(id) {
-        presenter.onCharacterClicked(it)
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selector)
         presenter.attachView(this)
         id = intent.getLongExtra(EXTRA_ID, 1)
-
+        val adapter = SelectorAdapter(id) {
+            presenter.onCharacterClicked(it)
+        }
         val selectorList = findViewById<RecyclerView>(R.id.selectorList)
         selectorList.adapter = adapter
 

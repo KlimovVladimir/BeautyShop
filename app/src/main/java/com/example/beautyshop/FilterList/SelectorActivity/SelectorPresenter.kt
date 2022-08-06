@@ -9,7 +9,4 @@ class SelectorPresenter: BasePresenter<SelectorView>() {
         view?.backToFilterScreen(item)
     }
 
-    override fun onViewAttached() {
-
-    }
 }

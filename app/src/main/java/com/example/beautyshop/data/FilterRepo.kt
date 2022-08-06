@@ -6,6 +6,30 @@ class FilterRepo {
         Filter(
             id = 1,
             item = ""
+        ),
+        Filter(
+            id = 2,
+            item = ""
+        ),
+        Filter(
+            id = 3,
+            item = ""
+        ),
+        Filter(
+            id = 4,
+            item = ""
+        ),
+        Filter(
+            id = 5,
+            item = ""
+        ),
+        Filter(
+            id = 6,
+            item = ""
+        ),
+        Filter(
+            id = 7,
+            item = ""
         )
     )
 

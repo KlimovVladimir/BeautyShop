@@ -12,58 +12,81 @@
             android:id="@+id/product_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:text="@string/product_type"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
-        <EditText
+        <TextView
+            android:id="@+id/product_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_category"
             android:textAlignment="center"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
 
-        <EditText
+        <TextView
+            android:id="@+id/product_tags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/product_tags"
             android:textAlignment="center"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
 
-        <EditText
+        <TextView
+            android:id="@+id/brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brand"
             android:textAlignment="center"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/price"
-            android:textAlignment="center"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:orientation="horizontal">
 
-        <EditText
+            <TextView
+                android:id="@+id/price_greater_than"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="@string/price"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/price_less_than"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="@string/price"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rating_greater_than"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:text="@string/rating"
-            android:textAlignment="center"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:textAlignment="center" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_apply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/apply" />
+        <Button
+            android:id="@+id/button_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reset" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

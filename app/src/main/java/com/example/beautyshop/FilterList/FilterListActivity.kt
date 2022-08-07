@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -49,6 +51,23 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
     private lateinit var ratingGreaterThanText: TextView
     private lateinit var applyButton: Button
     private lateinit var resetButton: Button
+    private lateinit var progressBar: ProgressBar
+
+    fun hideAllViews() {
+        productTypeText.visibility = View.GONE
+        productCategoryText.visibility = View.GONE
+        productTagsText.visibility = View.GONE
+        brandText.visibility = View.GONE
+        priceGreaterThanText.visibility = View.GONE
+        priceLessThanText.visibility = View.GONE
+        ratingGreaterThanText.visibility = View.GONE
+        applyButton.visibility = View.GONE
+        resetButton.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        progressBar.visibility = View.VISIBLE
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +83,7 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
         ratingGreaterThanText = findViewById(R.id.rating_greater_than)
         applyButton = findViewById(R.id.button_apply)
         resetButton = findViewById(R.id.button_reset)
+        progressBar = findViewById(R.id.progressBar)
 
         productTypeText.setOnClickListener { openSelectorScreen(PRODUCT_TYPE_ID) }
         productCategoryText.setOnClickListener { openSelectorScreen(PRODUCT_CATEGORY_ID) }
@@ -71,6 +91,9 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
         brandText.setOnClickListener { openSelectorScreen(BRANDS_ID) }
 
         applyButton.setOnClickListener {
+            hideAllViews()
+            showLoading()
+
             var mService: RetrofitServices = Common.retrofitService
 
             var url : String = presenter.applyFilters((application as BeautyShopApplication).filterRepository.getAll())

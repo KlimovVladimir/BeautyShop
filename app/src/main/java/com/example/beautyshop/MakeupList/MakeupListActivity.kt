@@ -1,7 +1,9 @@
 package com.example.beautyshop.MakeupList
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,6 +32,18 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
     }
 
     private lateinit var filterButton: Button
+    private lateinit var progressBar: ProgressBar
+    private lateinit var makeupsList: RecyclerView
+
+    fun showLoading() {
+        makeupsList.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+    }
+    fun hideLoading() {
+        makeupsList.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +52,12 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
         mService = Common.retrofitService
 
         filterButton = findViewById(R.id.filterButton)
-        val makeupsList = findViewById<RecyclerView>(R.id.makeupList)
+        progressBar = findViewById(R.id.progressBar)
+        makeupsList = findViewById(R.id.makeupList)
         val layoutManager = GridLayoutManager(this, 2)
         makeupsList.setLayoutManager(layoutManager)
         makeupsList.adapter = adapter
+        showLoading()
         filterButton.setOnClickListener { presenter.onFilterClicked() }
         getAllProductList()
     }
@@ -55,6 +71,7 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
                 (application as BeautyShopApplication).makeupRepository.setAll(response.body() as MutableList<Makeup>)
                 adapter.notifyDataSetChanged()
                 presenter.onScreenResumed()
+                hideLoading()
             }
         })
     }

@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="7dp"
+    android:scrollbars="none" >
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/brandText"
@@ -14,7 +30,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="24sp"
-        tools:text="Name: Walter White" />
+        tools:text="Brand: Dior" />
 
     <TextView
         android:id="@+id/nameText"
@@ -25,7 +41,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        tools:text="Nickname: Heisenberg" />
+        tools:text="234: 23423423" />
 
     <TextView
         android:id="@+id/descriptionText"
@@ -36,7 +52,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        tools:text="Birthday: 09-07-1958" />
+        tools:text="Descripton: 123qwerty" />
 
     <TextView
         android:id="@+id/priceText"
@@ -47,7 +63,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="14sp"
-        tools:text="Occupation: High School Chemistry Teacher, Meth King Pin" />
+        tools:text="Price: 300$" />
 
 
     <Button
@@ -55,6 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="work in progress..." />
+        android:text="@string/add" />
 
 </LinearLayout>
+</ScrollView>

@@ -39,10 +39,17 @@ class MakeupHolder(private val onItemClick: (Makeup) -> Unit, itemView: View) : 
     private val image: ImageView = itemView.findViewById(R.id.image)
 
     fun bind(makeup: Makeup) {
+        var price = ""
         Picasso.get().load(makeup.image_link).into(image)
         nameText.text = makeup.name
         brandText.text = makeup.brand
-        priceText.text = makeup.price + makeup.price_sign
+        if (makeup.price == "0.0")
+            price = "Нет в наличии"
+        else if (makeup.price_sign == null)
+            price = makeup.price + " $"
+        else
+            price = makeup.price + " " + makeup.price_sign
+        priceText.text = price
 
         itemView.setOnClickListener { onItemClick(makeup) }
     }

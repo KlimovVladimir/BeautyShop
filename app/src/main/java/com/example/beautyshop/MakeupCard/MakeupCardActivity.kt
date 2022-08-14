@@ -5,11 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.beautyshop.BeautyShopApplication
 import com.example.beautyshop.R
 import com.example.beautyshop.data.Makeup
+import com.squareup.picasso.Picasso
 
 class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
 
@@ -38,6 +40,7 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
     private lateinit var descriptionText: TextView
     private lateinit var priceText: TextView
     private lateinit var saveButton: Button
+    private lateinit var image: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,15 +51,24 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
         descriptionText = findViewById(R.id.descriptionText)
         priceText = findViewById(R.id.priceText)
         saveButton = findViewById(R.id.saveButton)
+        image = findViewById(R.id.image)
 
         presenter.attachView(this)
     }
 
     override fun bindCharacter(makeup: Makeup) {
-        brandText.text = makeup.name
+        var price = ""
+        Picasso.get().load(makeup.image_link).into(image)
+        brandText.text = makeup.brand
         nameText.text = makeup.name
         descriptionText.text = makeup.description
-        priceText.text = makeup.price
+        if (makeup.price == "0.0")
+            price = "Нет в наличии"
+        else if (makeup.price_sign == null)
+            price = makeup.price + " $"
+        else
+            price = makeup.price + " " + makeup.price_sign
+        priceText.text = price
 
         //saveButton.setOnClickListener {
         //    val updatedCharacter = character.copy(note = noteEditText.text.toString())

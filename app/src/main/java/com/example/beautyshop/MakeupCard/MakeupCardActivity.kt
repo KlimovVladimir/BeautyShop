@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -62,18 +63,20 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
         brandText.text = makeup.brand
         nameText.text = makeup.name
         descriptionText.text = makeup.description
-        if (makeup.price == "0.0")
+        if (makeup.price == "0.0") {
             price = "Нет в наличии"
+            saveButton.visibility = View.GONE
+        }
         else if (makeup.price_sign == null)
             price = makeup.price + " $"
         else
             price = makeup.price + " " + makeup.price_sign
         priceText.text = price
 
-        //saveButton.setOnClickListener {
-        //    val updatedCharacter = character.copy(note = noteEditText.text.toString())
-        //    presenter.onSaveButtonClicked(updatedCharacter)
-        //}
+        saveButton.setOnClickListener {
+            (application as BeautyShopApplication).shopBagRepository.add(makeup)
+            //presenter.onSaveButtonClicked(updatedCharacter)
+        }
     }
     override fun finish() {
         super.finish()

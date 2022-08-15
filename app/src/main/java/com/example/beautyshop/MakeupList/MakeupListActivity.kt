@@ -13,6 +13,7 @@ import com.example.beautyshop.FilterList.FilterListActivity
 import com.example.beautyshop.data.Filter
 import com.example.beautyshop.MakeupCard.MakeupCardActivity
 import com.example.beautyshop.R
+import com.example.beautyshop.ShopBagList.ShopBagListActivity
 import com.example.beautyshop.data.Makeup
 import com.example.beautyshop.retrofit.Common
 import com.example.beautyshop.retrofit.RetrofitServices
@@ -32,6 +33,7 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
     }
 
     private lateinit var filterButton: Button
+    private lateinit var shopBagButton: Button
     private lateinit var progressBar: ProgressBar
     private lateinit var makeupsList: RecyclerView
 
@@ -52,6 +54,7 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
         mService = Common.retrofitService
 
         filterButton = findViewById(R.id.filterButton)
+        shopBagButton = findViewById(R.id.shopBagButton)
         progressBar = findViewById(R.id.progressBar)
         makeupsList = findViewById(R.id.makeupList)
         val layoutManager = GridLayoutManager(this, 2)
@@ -59,6 +62,7 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
         makeupsList.adapter = adapter
         showLoading()
         filterButton.setOnClickListener { presenter.onFilterClicked() }
+        shopBagButton.setOnClickListener { presenter.onShopBagClicked() }
         getAllProductList()
     }
 
@@ -92,5 +96,9 @@ class MakeupListActivity : AppCompatActivity(), MakeupListView {
 
     override fun openFilterScreen() {
         FilterListActivity.start(this)
+    }
+
+    override fun openShopBagScreen() {
+        ShopBagListActivity.start(this)
     }
 }

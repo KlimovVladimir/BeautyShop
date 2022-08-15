@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+    <TextView
+        android:id="@+id/textEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -29,20 +31,15 @@
 
             <Button
                 android:id="@+id/filterButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/filter" />
-            <Button
-                android:id="@+id/shopBagButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/shop_bag" />
+                android:text="@string/filter"
+                android:visibility="invisible"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/makeupList"
+            android:id="@+id/shopBagList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

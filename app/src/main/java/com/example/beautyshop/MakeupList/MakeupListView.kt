@@ -10,4 +10,6 @@ interface MakeupListView: BaseView {
     fun openDetailsScreen(makeupId: Long)
 
     fun openFilterScreen()
+
+    fun openShopBagScreen()
 }

@@ -20,4 +20,8 @@ class MakeupListPresenter(private val repository: MakeupRepo) : BasePresenter<Ma
         view?.openFilterScreen()
     }
 
+    fun onShopBagClicked() {
+        view?.openShopBagScreen()
+    }
+
 }

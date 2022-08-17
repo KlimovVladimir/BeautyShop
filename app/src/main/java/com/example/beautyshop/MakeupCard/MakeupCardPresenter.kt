@@ -13,7 +13,7 @@ class MakeupCardPresenter(
         val makeup = makeupRepo.get(makeupId)
 
         if (makeup != null) {
-            view?.bindCharacter(makeup)
+            view?.bindMakeup(makeup)
         } else {
             view?.closeScreen()
         }

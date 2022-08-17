@@ -75,7 +75,7 @@ class ShopBagListActivity : AppCompatActivity(), ShopBagListView {
         finish()
     }
 
-    override fun bindCharacter(list: List<Makeup>) {
+    override fun bindMakeup(list: List<Makeup>) {
         adapter.shops = list
         shopsList.visibility = View.VISIBLE
         textEmpty.visibility = View.GONE

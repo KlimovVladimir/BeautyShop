@@ -57,7 +57,7 @@ class MakeupCardActivity : AppCompatActivity(), MakeupCardView {
         presenter.attachView(this)
     }
 
-    override fun bindCharacter(makeup: Makeup) {
+    override fun bindMakeup(makeup: Makeup) {
         var price = ""
         Picasso.get().load(makeup.image_link).into(image)
         brandText.text = makeup.brand

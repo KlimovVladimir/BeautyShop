@@ -10,7 +10,7 @@ class ShopBagListPresenter(private val repository: ShopBagRepo) : BasePresenter<
     fun onScreenResumed() {
         val shops = repository.getAll()
         if (shops.isNotEmpty())
-            view?.bindCharacter(shops)
+            view?.bindMakeup(shops)
         else
             view?.showEmptyBag()
     }

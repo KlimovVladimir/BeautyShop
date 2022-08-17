@@ -9,7 +9,17 @@ class MakeupListPresenter(private val repository: MakeupRepo) : BasePresenter<Ma
     fun onScreenResumed() {
         val makeup = repository.getAll()
 
-        view?.bindCharacter(makeup)
+        view?.bindMakeup(makeup)
+    }
+
+    fun onSearchClicked(searchText: String) {
+        if(searchText.isNotEmpty())
+            view?.searchMakeup(searchText)
+        else {
+            //TODO
+            val makeup = repository.getAll()
+            view?.bindMakeup(makeup)
+        }
     }
 
     fun onCharacterClicked(makeup: Makeup) {

@@ -5,6 +5,6 @@ import com.example.beautyshop.data.Makeup
 
 interface ShopBagListView: BaseView {
     fun closeScreen()
-    fun bindCharacter(list: List<Makeup>)
+    fun bindMakeup(list: List<Makeup>)
     fun showEmptyBag()
 }

@@ -144,7 +144,6 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
             } else if (it.id == BRANDS_ID && it.item != "") {
                 brandText.text = it.item
             }
-
         }
     }
 

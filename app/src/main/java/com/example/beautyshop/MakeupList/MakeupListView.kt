@@ -5,7 +5,9 @@ import com.example.beautyshop.data.Makeup
 
 interface MakeupListView: BaseView {
 
-    fun bindCharacter(list: List<Makeup>)
+    fun bindMakeup(list: List<Makeup>)
+
+    fun searchMakeup(searchText: String)
 
     fun openDetailsScreen(makeupId: Long)
 

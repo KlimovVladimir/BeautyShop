@@ -5,7 +5,7 @@ import com.example.beautyshop.data.Makeup
 
 interface MakeupCardView: BaseView {
 
-    fun bindCharacter(makeup: Makeup)
+    fun bindMakeup(makeup: Makeup)
 
     fun closeScreen()
 }

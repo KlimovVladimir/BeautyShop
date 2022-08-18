@@ -62,33 +62,38 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/price_greater_than"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/price"
+                android:hint="@string/price1"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:inputType="number"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/price_less_than"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/price"
+                android:hint="@string/price2"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:inputType="number"/>
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/rating_greater_than"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rating"
+            android:hint="@string/rating"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/button_apply"

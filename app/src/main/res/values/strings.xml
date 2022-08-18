@@ -5,7 +5,8 @@
     <string name="product_category">Категория</string>
     <string name="product_tags">Теги</string>
     <string name="brand">Бренд</string>
-    <string name="price">Цена</string>
+    <string name="price1">Цена от</string>
+    <string name="price2">Цена до</string>
     <string name="rating">Рейтинг</string>
     <string name="apply">Принять</string>
     <string name="reset">Сбросить</string>

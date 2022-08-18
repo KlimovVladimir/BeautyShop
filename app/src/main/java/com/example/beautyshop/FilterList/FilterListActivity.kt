@@ -46,9 +46,9 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
     private lateinit var productCategoryText: TextView
     private lateinit var productTagsText: TextView
     private lateinit var brandText: TextView
-    private lateinit var priceGreaterThanText: TextView
-    private lateinit var priceLessThanText: TextView
-    private lateinit var ratingGreaterThanText: TextView
+    private lateinit var priceGreaterThanText: EditText
+    private lateinit var priceLessThanText: EditText
+    private lateinit var ratingGreaterThanText: EditText
     private lateinit var applyButton: Button
     private lateinit var resetButton: Button
     private lateinit var progressBar: ProgressBar
@@ -103,7 +103,44 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
                 }
 
                 override fun onResponse(call: Call<MutableList<Makeup>>, response: Response<MutableList<Makeup>>) {
-                    (application as BeautyShopApplication).makeupRepository.setAll(response.body() as MutableList<Makeup>)
+                    var filterResult : MutableList<Makeup> = response.body() as MutableList<Makeup>
+                    var shops : MutableList<Makeup> = mutableListOf()
+                    var shops_flag = false
+                    if (priceGreaterThanText.text.isNotEmpty() || priceLessThanText.text.isNotEmpty()) {
+                        (application as BeautyShopApplication).filterRepository.set(Filter(PRICE_GREATER_THAN_ID, priceGreaterThanText.text.toString()))
+                        (application as BeautyShopApplication).filterRepository.set(Filter(PRICE_LESS_THAN_ID, priceLessThanText.text.toString()))
+                        shops_flag = true
+                        var priceGreaterThan : Double? = null
+                        var priceLessThan : Double? = null
+                        if(priceGreaterThanText.text.isNotEmpty())
+                            priceGreaterThan = priceGreaterThanText.text?.toString()?.toDouble()
+                        if(priceLessThanText.text.isNotEmpty())
+                            priceLessThan = priceLessThanText.text?.toString()?.toDouble()
+                        filterResult.forEach {
+                            val price = it.price?.toDouble()
+                            if (price != null) {
+                                if (priceGreaterThan != null && priceLessThan != null) {
+                                    if (price >= priceGreaterThan && price <= priceLessThan) {
+                                        shops.add(it)
+                                    }
+                                }
+                                else if (priceGreaterThan != null) {
+                                    if (price >= priceGreaterThan) {
+                                        shops.add(it)
+                                    }
+                                }
+                                else if (priceLessThan != null) {
+                                    if (price <= priceLessThan) {
+                                        shops.add(it)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (shops_flag)
+                        (application as BeautyShopApplication).makeupRepository.setAll(shops)
+                    else
+                        (application as BeautyShopApplication).makeupRepository.setAll(filterResult)
                     closeScreen()
                 }
             })
@@ -115,9 +152,9 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
             productCategoryText.text = getString(R.string.product_category)
             productTagsText.text = getString(R.string.product_tags)
             brandText.text = getString(R.string.brand)
-            priceGreaterThanText.text = getString(R.string.price)
-            priceLessThanText.text = getString(R.string.price)
-            ratingGreaterThanText.text = getString(R.string.rating)
+            priceGreaterThanText.text = null
+            priceLessThanText.text = null
+            ratingGreaterThanText.text = null
         }
 
     }
@@ -143,6 +180,10 @@ class FilterListActivity: AppCompatActivity(), FilterListView {
                 productTagsText.text = it.item
             } else if (it.id == BRANDS_ID && it.item != "") {
                 brandText.text = it.item
+            } else if (it.id == PRICE_GREATER_THAN_ID && it.item != "") {
+                priceGreaterThanText.setText(it.item)
+            } else if (it.id == PRICE_LESS_THAN_ID && it.item != "") {
+                priceLessThanText.setText(it.item)
             }
         }
     }

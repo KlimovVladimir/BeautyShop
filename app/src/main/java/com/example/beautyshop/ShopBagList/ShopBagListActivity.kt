@@ -85,5 +85,4 @@ class ShopBagListActivity : AppCompatActivity(), ShopBagListView {
         shopsList.visibility = View.GONE
         textEmpty.visibility = View.VISIBLE
     }
-
 }
